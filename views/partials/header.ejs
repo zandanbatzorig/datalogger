@@ -1,0 +1,46 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="center-container">
+    <a href="/">
+      <img src="./img/logo2.png" alt="headerLogoImage">
+      <div class="text-container">
+        <div>Radio Electronics Lab</div>
+        <div>datalogger</div>
+      </div>
+    </a>
+  </div>
+
+  <nav class="header__nav">
+    <!-- <h1><a href="/">Ninja Smoothies</a></h1> -->
+    <ul>
+      <li>
+        <a href="/" class="header__home">Эхлэл</a>
+      </li>
+      <li>
+        <a href="/device" class="header__device">Төхөөрөмж</a>
+      </li>
+      <li>
+        <a href="/sensor" class="header__data">Өгөгдөл</a>
+      </li>
+      <li>
+        <a href="/about" class="header__about">Тухай</a>
+      </li>
+      <li>
+        <a href="/contact" class="header__contact">Холбоо барих</a>
+      </li>
+      <% if (user) { %>
+        <li>Хэрэглэгч: <%= user.email %></li>
+        <li><a href="/logout">Гарах</a></li>
+      <% } else { %>
+        <li><a href="/login">Нэвтрэх</a></li>
+        <li><a href="/signup" class="btn">Бүртгүүлэх</a></li>
+      <% } %>
+    </ul>
+  </nav>
+  

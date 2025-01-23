@@ -1,0 +1,66 @@
+<%- include('partials/header'); -%>
+<!-- <h3>Database Table Example</h3> -->
+<p>Хэрэглэгчийн нэр:, <%= user.email %></p>
+<p>Хэрэглэгчийн дугаар:, <%= user._id %></p>
+
+<!-- Dropdown to select page size -->
+<div class="option-container">
+  <label for="pageSize">Дэлгэцэнд харуулах тоо: </label>
+  <select id="pageSize" name="pageSize" onchange="updatePageSize()">
+    <% pageOptions.forEach(option => { %>
+      <option value="<%= option %>" <%= option == pageSize ? 'selected' : '' %>><%= option %> Pages</option>
+    <% }) %>
+</select>
+</div>
+
+<div class="stable-container">
+<table class="sstyled-table">
+    <thead>
+    <tr>
+        <!-- <th width>ID</th> -->
+        <th width>devid</th>
+        <th width>devserial</th>
+        <th width>Date</th>
+        <th width>Time</th>
+    </tr>
+</thead>
+<tbody>
+    <% users.forEach(sensor2 => { %>
+    <tr> 
+        <% if (sensor2.devid==user._id) { %>
+        <td><%= sensor2.devid %></td>
+        <td><%= sensor2.devserial %></td>
+        <td><%= sensor2.createdAt.toDateString() %></td>
+        <td><%= sensor2.createdAt.toTimeString() %></td>
+        <% } %>        
+    </tr>
+    <% }) %>
+</tbody>
+</table>
+</div>
+
+<!-- Pagination controls -->
+<div class="pagination5">
+  <% if (currentPage > 1) { %>
+    <a href="/device?page=<%= currentPage - 1 %>&size=<%= pageSize %>">Өмнөх</a>
+  <% } %>
+  
+  <% if (currentPage < totalPages) { %>
+    <a href="/device?page=<%= currentPage + 1 %>&size=<%= pageSize %>">Дараах</a>
+  <% } %>
+</div>
+
+<p>Тухайн хуудас : <%= currentPage %></p>
+<p>Хуудасны хэмжээ : <%= pageSize %></p>
+<p>Нийт хуудас : <%= totalPages %></p>
+
+
+  <script>
+      // Update page size in the URL when selection changes
+      function updatePageSize() {
+        const pageSize = document.getElementById('pageSize').value;
+        window.location.href = `/device?page=1&size=${pageSize}`;
+      }
+  </script>
+  
+<%- include('partials/footer'); -%>
